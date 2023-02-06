@@ -66,7 +66,7 @@ jobs:
     runs-on: ubuntu-20.04
     needs: compile
     outputs:
-      registry-path: ${{ steps.push-to-quay.outputs.registry-path }}
+      registry-paths: ${{ steps.push-to-quay.outputs.registry-paths }}
     env:
       JAR_NAME: ${{ needs.compile.outputs.jarname }}
       IMAGE_TAGS: latest ${{ needs.compile.outputs.commit_sha }}
@@ -123,5 +123,5 @@ jobs:
         uses: redhat-actions/oc-new-app@v1
         with:
           app_name: petclinic
-          image: ${{ needs.build-push-image.outputs.registry-path }}
+          image: ${{ needs.build-push-image.outputs.registry-paths }}
           namespace: ${{ env.TEST_NAMESPACE }}
