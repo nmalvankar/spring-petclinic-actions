@@ -7,7 +7,7 @@ on: [ push, workflow_dispatch, pull_request ]
 env:
   IMAGE_REGISTRY: quay.io/nmalvankar
   REGISTRY_USER: nmalvankar+td_demo
-  REGISTRY_PASSWORD: ${{ github.token }}
+  REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
   APP_NAME: petclinic
   IMAGE_TAGS: latest ${{ github.sha }}
 
