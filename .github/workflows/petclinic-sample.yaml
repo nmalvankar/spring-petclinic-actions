@@ -106,7 +106,7 @@ jobs:
   openshift-deploy:
     name: Deploy to OpenShift
     runs-on: ubuntu-20.04
-    needs: build-push-image
+    needs: [compile, build-push-image]
     steps:
       - name: OpenShift login
         uses: redhat-actions/oc-login@v1
