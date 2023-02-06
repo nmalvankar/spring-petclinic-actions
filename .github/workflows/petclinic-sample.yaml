@@ -105,15 +105,9 @@ jobs:
           
   openshift-deploy:
     name: Deploy to OpenShift
-    strategy:
-      max-parallel: 1
-      fail-fast: false
-      matrix:
-        image-source: [ "IMAGE_PATH", "IMAGE_STREAM" ]
-
     runs-on: ubuntu-20.04
+    needs: build-push-image
     steps:
-    
       - name: OpenShift login
         uses: redhat-actions/oc-login@v1
         with:
