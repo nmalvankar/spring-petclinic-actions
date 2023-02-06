@@ -3,7 +3,7 @@ on: [ push, workflow_dispatch ]
 
 env:
   IMAGE_REGISTRY: quay.io
-  IMAGE_REGISTRY_NAMESPACE: nmalvankar
+  IMAGE_REGISTRY_NAMESPACE: ${{ secrets.IMAGE_REGISTRY_NAMESPACE }}
   TEST_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}
   APP_NAME: petclinic
   APP_PORT: 8080
@@ -123,5 +123,5 @@ jobs:
         uses: redhat-actions/oc-new-app@v1
         with:
           app_name: petclinic
-          image: quay.io/nmalvankar/petclinic:latest
+          image: ${{ needs.build-push-image.outputs.registry-path }}
           namespace: ${{ env.TEST_NAMESPACE }}
